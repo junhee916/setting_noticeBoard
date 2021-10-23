@@ -1,8 +1,10 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
+const autoIncrement = require('mongoose-sequence')(mongoose)
 
 const modelSchema = mongoose.Schema(
     {
+        _id : Number,
         name : {
             type : String
         },
@@ -42,5 +44,7 @@ modelSchema.methods.comparePassword = function(isInputPassword, cb){
         cb(null, isMatch)
     })
 }
+
+modelSchema.plugin(autoIncrement, {id: 'user_id_counter', inc_field: '_id'})
 
 module.exports = mongoose.model('user', modelSchema)

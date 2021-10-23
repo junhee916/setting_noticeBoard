@@ -130,7 +130,13 @@ userDBO.login = async (req, res) => {
                     
                     res.status(200).json({
                         msg : "success login",
-                        tokenInfo : token
+                        tokenInfo : token,
+                        userInfo : {
+                            id : user._id,
+                            name : user.name,
+                            email : user.email,
+                            password : user.password
+                        }
                     })
                 }
             })

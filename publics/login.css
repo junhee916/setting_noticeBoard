@@ -1,0 +1,28 @@
+html, body{
+    height: 100%;
+}
+
+.login_main_layout{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    
+}
+
+.login_main_view{
+
+    width: 40%;
+}
+
+.login_btn_row_layout{
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+
+.login_btn_login_margin_ctrl{
+
+    margin-right: 10px;
+}

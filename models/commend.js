@@ -1,7 +1,9 @@
 const mongoose = require('mongoose')
+const autoIncrement = require('mongoose-sequence')(mongoose)
 
 const modelSchema = mongoose.Schema(
     {
+        _id : Number,
         user : {
             type : mongoose.Schema.Types.ObjectId,
             ref : 'user'
@@ -20,5 +22,7 @@ const modelSchema = mongoose.Schema(
         timestamps : true
     }
 )
+
+modelSchema.plugin(autoIncrement, {id: 'commend_id_counter', inc_field: '_id'})
 
 module.exports = mongoose.model('commend', modelSchema)
