@@ -7,7 +7,6 @@ commendDBO.list = async (req, res) => {
 
     try{
         const commend = await commendModel.findById(id)
-                            .populate('user', ['email'])
                             .populate('board', ['board'])
 
         if(!commend){

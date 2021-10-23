@@ -5,8 +5,8 @@ const modelSchema = mongoose.Schema(
     {
         _id : Number,
         user : {
-            type : mongoose.Schema.Types.ObjectId,
-            ref : 'user'
+            type : String,
+            required : true
         },
         board : {
             type : mongoose.Schema.Types.ObjectId,

@@ -10,7 +10,7 @@ router.get('/', board.list)
 router.get('/:boardId', checkAuth, board.detailList)
 
 // register board
-router.post('/', board.register)
+router.post('/save', board.register)
 
 // update board
 router.post('/update/:boardId', checkAuth, board.update)

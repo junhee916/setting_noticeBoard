@@ -7,7 +7,7 @@ const commend = require('../dbos/commend')
 router.get('/:commendId', checkAuth, commend.list)
 
 // register commend
-router.post('/', checkAuth, commend.register)
+router.post('/save', checkAuth, commend.register)
 
 // update commend
 router.post('/update/:commendId', checkAuth, commend.update)

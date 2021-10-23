@@ -1,23 +1,31 @@
 const boardModel = require('../models/board')
 const boardDBO = {}
 
-boardDBO.list = async (req, res) => {
+boardDBO.list = (req, res) => {
+
+    const result = {status : 'success', boardData : []}
 
     try{
 
-        const boards = await boardModel.find().populate('user', ['email'])
+        boardModel.find().exec(function(err, boards){
+            
+            if(err){
+                console.log(err)
+            }
+            else{
 
-        res.status(200).json({
-            msg : "get boards",
-            count : boards.length,
-            boardInfo : boards.map(board => {
+                for(board of boards){
 
-                return{
-                    id : board._id,
-                    user : board.user,
-                    board : board.board
+                    const temp = {
+
+                        board : board["board"]
+                    }
+
+                    result["boardData"].push(temp)
                 }
-            })
+
+                res.status(201).send({board : result})
+            }
         })
 
     }
@@ -34,7 +42,6 @@ boardDBO.detailList = async (req, res) => {
 
     try{
         const board = await boardModel.findById(id)
-                            .populate('user', ['email'])
 
         if(!board){
             return res.status(402).json({
@@ -61,23 +68,16 @@ boardDBO.detailList = async (req, res) => {
 
 boardDBO.register = async (req, res) => {
 
-    const { user, board } = req.body
-
-    const newBoard = new boardModel({
-        user, board
-    })
+    const newBoard = new boardModel(req.body)
     
     try{
+
         const board = await newBoard.save()
 
-        res.status(200).json({
-            msg : "register board",
-            boardInfo : {
-                id : board._id,
-                user : board.user,
-                board : board.board
-            }
-        })
+        if(board){
+            res.render('../views/index')
+        }
+
     }
     catch(err){
         res.status(500).json({
