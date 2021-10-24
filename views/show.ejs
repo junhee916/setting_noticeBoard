@@ -15,7 +15,7 @@
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
     crossorigin="anonymous">
     </script>
-    <title>index</title>
+    <title>show</title>
   </head>
   <body>
 
@@ -23,24 +23,23 @@
 
         <div class="signup_main_column_layout">
 
-            <!--input board-->
-            <div class="form-floating">
-                <textarea class="form-control" placeholder="Leave a comment here" id="board" style="height: 100px"></textarea>
-                <label for="floatingTextarea2">board</label>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label" id="boardNum">
+                  <div><%= board._id%></div>
+                  board
+                </label>
+                <input type="text" class="form-control" id="board">
             </div>
 
-            <button type="button" class="btn btn-secondary" id="addBoardBtn">추가</button>
-
-            <div id = "boardView"></div>
-
-           
+            <button type="submit" class="btn btn-primary" id="updateBoardBtn">update</button>
+            
         </div>
 
 
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="/controllers/boards/index.js"></script>
+    <script type="text/javascript" src="/controllers/boards/show.js"></script>
 
   </body>
 </html>

@@ -49,6 +49,12 @@ app.get('/index', (req, res) => {
     res.render('index')
 })
 
+app.get('/show', (req, res) => {
+
+    res.render('show')
+})
+
+
 const PORT = process.env.PORT || 7000
 
 app.listen(PORT, console.log("connected server..."))

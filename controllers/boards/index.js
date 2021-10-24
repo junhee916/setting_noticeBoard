@@ -1,5 +1,6 @@
 const addBoardBtn = document.getElementById('addBoardBtn')
 
+// save
 addBoardBtn.addEventListener("click", function(){
 
     const board = $("#board").val()
@@ -38,8 +39,15 @@ function boardView(){
             const board = response["board"]["boardData"]
 
             for(let i = 0; i<board.length; i++){
-                
-                const htmlTemp = `<div class="board_write_append">${board[i]["board"]}</div>`
+
+                const htmlTemp = 
+                `
+                <div class="board_write_append">
+                    <div class="board_board_id_pointer" onclick="window.location.href='/board/detail/${board[i]["id"]}'">${board[i]["id"]}</div>
+                    <div>${board[i]["board"]}</div>
+                </div>
+
+                `
 
                 $("#boardView").append(htmlTemp)
             }

@@ -6,8 +6,8 @@ const board = require('../dbos/board')
 // total get board
 router.get('/', board.list)
 
-// detail get board
-router.get('/:boardId', checkAuth, board.detailList)
+// detail move board
+router.get('/detail/:boardId', board.detailList)
 
 // register board
 router.post('/save', board.register)

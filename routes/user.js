@@ -7,7 +7,7 @@ const user = require('../dbos/user')
 router.get('/', user.list)
 
 // 일반 유저 get user
-router.get('/:userId', checkAuth, user.detailList)
+router.get('/show/:userId', checkAuth, user.detailList)
 
 // signup
 router.post('/signup', user.signup)

@@ -119,6 +119,8 @@ userDBO.login = async (req, res) => {
                 else{
 
                     const payload = {
+                        id : user._id,
+                        name : user.name,
                         email : user.email
                     }
 

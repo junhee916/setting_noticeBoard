@@ -1,8 +1,30 @@
 .board_write_append{
+    display: flex;
+    flex-direction: row;
+}
+
+.board_write_append{
 
     margin-top : 10px;
     border : 2px solid gray;
     border-radius: 3px;
     font-size:  13px;
     font-weight: bolder;
+
+}
+
+.board_write_append{
+    padding : 5px
+}
+
+.board_board_id_pointer{
+    margin-right: 10px;
+}
+
+.board_board_id_pointer{
+    cursor: pointer;
+}
+
+.board_board_id_pointer:hover{
+    color: tomato;
 }

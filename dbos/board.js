@@ -18,6 +18,7 @@ boardDBO.list = (req, res) => {
 
                     const temp = {
 
+                        id : board["_id"],
                         board : board["board"]
                     }
 
@@ -36,28 +37,36 @@ boardDBO.list = (req, res) => {
     }
 };
 
-boardDBO.detailList = async (req, res) => {
+
+boardDBO.detailList = (req, res) => {
 
     const id = req.params.boardId
 
     try{
-        const board = await boardModel.findById(id)
+        boardModel.findById(id).exec(function(err, board){
 
-        if(!board){
-            return res.status(402).json({
-                msg : "no boardId"
-            })
-        }
-        else{
-            res.status(200).json({
-                msg : "get board",
-                boardInfo : {
-                    id : board._id,
-                    user : board.user,
-                    board : board.board
-                }
-            })
-        }
+            if(err){
+                console.log(err)
+            }
+            else{
+
+                /*
+                * 현재 데이터를 불러올 수는 있으나 ajax으로 따로 
+                보내는 방법이 미흡함 -> ejs로 바로 데이터를 보낸 다음에 
+                다시 구현할 예정 
+                */
+                // const result = {
+                //     id : board._id,
+                //     board : board.board
+                // }
+
+                // res.status(201).send({board : result})
+
+                res.render('../views/show', {board : board})
+
+            }
+        })
+
     }
     catch(err){
         res.status(500).json({
@@ -90,14 +99,11 @@ boardDBO.update = async (req, res) => {
 
     const id = req.params.boardId
 
-    const updateOps = {}
-
-    for(const ops of req.body){
-        updateOps[ops.propName] = ops.value
-    }
-
     try{
-        const board = await boardModel.findByIdAndUpdate(id, {$set : updateOps})
+        const board = await boardModel.findByIdAndUpdate(id, {$set : {
+
+            board : req.body.board
+        }})
 
         if(!board){
             return res.status(402).json({
@@ -105,9 +111,7 @@ boardDBO.update = async (req, res) => {
             })
         }
         else{
-            res.status(200).json({
-                msg : "update board by id: " + id
-            })
+            res.render('../views/show')
         }
     }
     catch(err){

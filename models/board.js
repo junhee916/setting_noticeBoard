@@ -5,8 +5,7 @@ const modelSchema = mongoose.Schema(
     {
         _id : Number,
         user : {
-            type : String,
-            required : true
+            type : String
         },
         board : {
             type : String,
